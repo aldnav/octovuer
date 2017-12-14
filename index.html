@@ -5,8 +5,10 @@
 <body>
     <div id="app">
         <input type="text" v-on:input="changeTitle">
+        <h1 v-once>{{ title }}</h1>
         <p>{{ title }}</p>
         <a v-bind:href="link">Google</a>
+        <p v-html="finishedLink"></p>
     </div>
     <script src="site.js"></script>
 </body>
