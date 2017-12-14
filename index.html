@@ -8,22 +8,6 @@
         <p>{{ title }}</p>
         <a v-bind:href="link">Google</a>
     </div>
+    <script src="site.js"></script>
 </body>
-<script>
-var app = new Vue({
-    el: '#app',
-    data: {
-        title: 'Hello world!',
-        link: 'http://google.com'
-    },
-    methods: {
-        changeTitle: function(e) {
-            this.title = e.target.value;
-        },
-        sayHello: function(e) {
-            return this.title;
-        }
-    }
-});
-</script>
 </html>
