@@ -14,3 +14,21 @@ var app = new Vue({
         }
     }
 });
+
+var app2 = new Vue({
+    el: '#events-app',
+    data: {
+        counter: 0,
+        x: 0,
+        y: 0
+    },
+    methods: {
+        increase: function(event, step=1) {
+            this.counter += step;
+        },
+        updateCoordinates: function(event) {
+            this.x = event.clientX;
+            this.y = event.clientY;
+        }
+    }
+});

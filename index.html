@@ -10,6 +10,14 @@
         <a v-bind:href="link">Google</a>
         <p v-html="finishedLink"></p>
     </div>
+    <hr>
+    <h2>Events</h2>
+    <div id="events-app">
+        <button v-on:click="increase">Click Me</button>
+        <button v-on:click="increase($event, 2)">Click Me 2</button>
+        <p>{{ counter }}</p>
+        <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
+    </div>
     <script src="site.js"></script>
 </body>
 </html>
