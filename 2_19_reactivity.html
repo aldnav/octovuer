@@ -1,0 +1,15 @@
+<html>
+<head>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="counter++">Increase</button>
+        <button v-on:click="counter--">Decrease</button>
+        <button v-on:click="secondCounter++">Increase 2nd Counter</button>
+        <p>Counter: {{ counter }} | {{ secondCounter }}</p>
+        <p>Result: {{ result() }} | {{ output }}</p>
+    </div>
+    <script src="2_19_reactivity.js"></script>
+</body>
+</html>
