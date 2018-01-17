@@ -1,0 +1,72 @@
+<style>
+html {
+    font-family: Arial, sans-serif;
+}
+.top-hud {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.healthbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.player-name {
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px;
+}
+.player-health {
+    height: 40px;
+    width: 360px;
+    background: linear-gradient(90deg, #F44336, #4CAF50);
+    position: relative;
+    z-index: -2;
+}
+.player-health--text {
+    text-align: center;
+    /*background: #00000040;*/
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1;
+}
+.player-health--negative {
+    position: absolute;
+    right: 0;
+    height: 40px;
+    width: 50%;
+    background-color: gray;
+    z-index: -1;
+    transition: all 0.2s ease;
+}
+</style>
+<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+<div id="game">
+    <div class="top-hud">
+        <div class="healthbar">
+            <div class="player-name">{{ player1.name }}</div>
+            <div class="player-health">
+                <div class="player-health--negative" :style="{width: (100 - player1.health) + '%'}"></div>
+                <div class="player-health--text">{{ player1.health }}</div>
+            </div>
+        </div>
+        <div class="healthbar">
+            <div class="player-name">{{ player2.name }}</div>
+            <div class="player-health">
+                <div class="player-health--negative" :style="{width: (100 - player2.health) + '%'}"></div>
+                <div class="player-health--text">{{ player2.health }}</div>
+            </div>
+        </div>
+    </div>
+    <button @click="startNewGame()">Start New Game</button>
+    <button @click="attackMonster()">Attack</button>
+    <button @click="attackMonster(21, 50)">Special Attack</button>
+    <button @click="heal(player1)">Heal</button>
+    <button @click="quit()">Give Up</button>
+</div>
+<script src="app.js"></script>
