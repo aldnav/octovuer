@@ -19,6 +19,10 @@ html {
     font-weight: bold;
     padding: 4px;
 }
+.player-name img {
+    width: 20px;
+    height: 20px;
+}
 .player-health {
     height: 40px;
     width: 360px;
@@ -44,29 +48,36 @@ html {
     z-index: -1;
     transition: all 0.2s ease;
 }
+section {
+    margin: 0 auto;
+}
 </style>
 <script src="https://npmcdn.com/vue/dist/vue.js"></script>
 <div id="game">
     <div class="top-hud">
         <div class="healthbar">
-            <div class="player-name">{{ player1.name }}</div>
+            <div class="player-name">{{ player1.name }}&nbsp;&nbsp;<img v-for="i in player1.healing" src="assets/revive_potion.png" alt="potion"></div>
             <div class="player-health">
                 <div class="player-health--negative" :style="{width: (100 - player1.health) + '%'}"></div>
                 <div class="player-health--text">{{ player1.health }}</div>
             </div>
         </div>
         <div class="healthbar">
-            <div class="player-name">{{ player2.name }}</div>
+            <div class="player-name">{{ player2.name }}&nbsp;&nbsp;<img v-for="i in player2.healing" src="assets/revive_potion.png" alt="potion"></div>
             <div class="player-health">
                 <div class="player-health--negative" :style="{width: (100 - player2.health) + '%'}"></div>
                 <div class="player-health--text">{{ player2.health }}</div>
             </div>
         </div>
     </div>
-    <button @click="startNewGame()">Start New Game</button>
-    <button @click="attackMonster()">Attack</button>
-    <button @click="attackMonster(21, 50)">Special Attack</button>
-    <button @click="heal(player1)">Heal</button>
-    <button @click="quit()">Give Up</button>
+    <section v-if="!gameIsRunning">
+        <button @click="startNewGame()">Start New Game</button>
+    </section>
+    <section v-else>
+        <button @click="attackMonster()">Attack</button>
+        <button @click="attackMonster(21, 50)">Special Attack</button>
+        <button @click="heal(player1)" :disabled="player1.healing === 0">Heal</button>
+        <button @click="quit()">Give Up</button>
+    </section>
 </div>
 <script src="app.js"></script>

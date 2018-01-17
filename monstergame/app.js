@@ -1,6 +1,7 @@
 new Vue({
     el: '#game',
     data: {
+        gameIsRunning: false,
         player1: {
             name: 'You',
             health: 100,
@@ -18,6 +19,7 @@ new Vue({
             this.player1.healing = 3;
             this.player2.health = 100;
             this.player2.healing = 3;
+            this.gameIsRunning = true;
         },
         attackMonster: function(minAttack, maxAttack) {
             this.attack(this.player2, minAttack, maxAttack);
@@ -44,7 +46,7 @@ new Vue({
             }
         },
         quit: function() {
-
+            this.gameIsRunning = false;
         }
     }
 });
