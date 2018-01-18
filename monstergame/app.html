@@ -17,14 +17,21 @@
             </div>
         </div>
     </div>
-    <section v-if="!gameIsRunning">
-        <button @click="startNewGame()">Start New Game</button>
+    <section v-if="isGameOver" class="game-over">
+        <h1>Game Over</h1><br>
+        <a @click="startNewGame()">Start New Game</a>
+    </section>
+    <section v-else-if="!gameIsRunning">
+        <a @click="startNewGame()">Start New Game</a>
     </section>
     <section v-else>
-        <button @click="attackMonster()">Attack</button>
-        <button @click="attackMonster(21, 50)">Special Attack</button>
-        <button @click="heal(player1)" :disabled="player1.healing === 0">Heal</button>
-        <button @click="quit()">Give Up</button>
+        <a @click="attackMonster()">Attack</a>
+        <a @click="attackMonster(21, 50)">Special Attack</a>
+        <a @click="heal(player1)" :disabled="player1.healing === 0">Heal</a>
+        <a @click="quit()">Give Up</a>
+    </section>
+    <section class="logs" v-if="gameIsRunning">
+        <p v-for="log in logs" :class="getLogClass(log)">{{ log.text }}</p>
     </section>
 </div>
 <script src="app.js"></script>
