@@ -1,0 +1,37 @@
+<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="app.css">
+<div id="game">
+    <div class="top-hud">
+        <div class="healthbar">
+            <div class="player-name">{{ player1.name }}&nbsp;&nbsp;<img v-for="i in player1.healing" src="assets/revive_potion.png" alt="potion"></div>
+            <div class="player-health">
+                <div class="player-health--negative" :style="{width: (100 - player1.health) + '%'}"></div>
+                <div class="player-health--text">{{ player1.health }}</div>
+            </div>
+        </div>
+        <div class="healthbar">
+            <div class="player-name">{{ player2.name }}&nbsp;&nbsp;<img v-for="i in player2.healing" src="assets/revive_potion.png" alt="potion"></div>
+            <div class="player-health">
+                <div class="player-health--negative" :style="{width: (100 - player2.health) + '%'}"></div>
+                <div class="player-health--text">{{ player2.health }}</div>
+            </div>
+        </div>
+    </div>
+    <section v-if="isGameOver" class="game-over">
+        <h1>Game Over</h1><br>
+        <a @click="startNewGame()">Start New Game</a>
+    </section>
+    <section v-else-if="!gameIsRunning">
+        <a @click="startNewGame()">Start New Game</a>
+    </section>
+    <section v-else>
+        <a @click="attackMonster()">Attack</a>
+        <a @click="attackMonster(21, 50)">Special Attack</a>
+        <a @click="heal(player1)" :disabled="player1.healing === 0">Heal</a>
+        <a @click="quit()">Give Up</a>
+    </section>
+    <section class="logs" v-if="gameIsRunning">
+        <p v-for="log in logs" :class="getLogClass(log)">{{ log.text }}</p>
+    </section>
+</div>
+<script src="app.js"></script>
